@@ -24,4 +24,5 @@ jobs:
       uses: azure/webapps-deploy@v1
       with: app-name:motu 
       publish-profile: ${{ secrets.motu_profile}} 
-      package:'./dotnetcorewebapp'
+      package: './dotnetcorewebapp'
+      
