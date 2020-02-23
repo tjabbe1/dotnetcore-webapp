@@ -22,7 +22,8 @@ jobs:
            dotnet publish -c Release -o dotnetcorewebapp
     - name: 'Run Azure webappdeploy action using publish profile credentials'
       uses: azure/webapps-deploy@v1
-      with: app-name:motu 
+      with: 
+      app-name: motu 
       publish-profile: ${{ secrets.motu_profile}} 
       package: './dotnetcorewebapp'
       
