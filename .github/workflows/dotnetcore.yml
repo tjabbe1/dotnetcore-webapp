@@ -9,14 +9,14 @@ jobs:
 
     steps:
     - uses:  azure/appservice-actions/webapp@master
-      with: 
-            app-name:motu
-            publish-profile:${{secrets.motu_profile}}
-            package:"bin/Release/netcoreapp3.0"
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.0.100
+        with: 
+            app-name:motu
+            publish-profile:${{secrets.motu_profile}}
+            package:"bin/Release/netcoreapp3.0" 
     - name: Build with dotnet
       run: dotnet build --configuration Release
            dotnet publish -c Release -o dotnetcorewebapp
