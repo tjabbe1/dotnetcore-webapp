@@ -11,8 +11,8 @@ jobs:
     - uses:  azure/appservice-actions/webapp@master
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 3.0.100
+      with: publish-profile:${{secrets.motu_profile}} 
+        dotnet-version:3.0.100
         with: 
             app-name:motu
             publish-profile:${{secrets.motu_profile}}
