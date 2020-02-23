@@ -8,10 +8,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses:  azure/appservice-actions/webapp@master
+      with: 
+            app-name:motu
+            publish-profile:${{secrets.motu_profile}}
+            package:"bin/Release/netcoreapp3.0"
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.0.100
     - name: Build with dotnet
       run: dotnet build --configuration Release
+           dotnet publish -c Release -o dotnetcorewebapp
+    - name: 'Run Azure webappdeploy action using publish profile credentials'
+      uses: azure/webapps-deploy@v1
+      with: app-name:motu # Replace with your app name
+      publish-profile: ${{ secrets.motu_profile}} # Define secret variable in repository settings as per action documentation
+      package: './dotnetcorewebapp
